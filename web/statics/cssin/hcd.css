@@ -1,0 +1,43 @@
+#menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+}
+
+#menu li {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+#menu li:hover {
+    /*只是改变了视觉位置,元素本身位置还是在 0px,只是视觉上向上偏移了 5px。*/
+    transform: translateY(-5px);
+}
+
+#menu li img {
+    display: block;
+    margin: 0 auto;
+    width: 240px;
+    height: 330px;
+    border-radius: 10px;
+}
+
+#menu li div:last-child {
+    margin-top: 10px;
+}
+
+#menu li p {
+    margin: 0;
+    font-size: 18px;
+    color: royalblue;
+}
+
+#menu li p:last-child {
+    color: #e1251b;
+}

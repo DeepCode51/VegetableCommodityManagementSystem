@@ -1,0 +1,148 @@
+/* 商品详细页面样式 */
+.shang {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.xinxi {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.xinxi h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.xinxi .price {
+    font-size: 18px;
+    color: #f40;
+}
+
+.xinxi .pingjia {
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.choose-btns {
+    margin-top: 20px;
+}
+
+.btn-lg {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f40;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-lg:hover {
+    background-color: #ff5722;
+}
+/*    评价*/
+/* 商品评价样式 */
+.pj {
+    display: flex;
+    align-items: center;
+}
+
+.pj h3 {
+    margin-right: 20px;
+    font-size: 22px;
+}
+
+.lipj {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.lipj img {
+    margin-right: 20px;
+}
+.pjimg{
+    margin-left: 50px;
+}
+.pjj
+{
+    margin: auto;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*    菜品推荐*/
+.mt {
+    margin-top: 40px;
+    text-align: center; /* 居中 */
+}
+
+.mt h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.recomment {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap; /* 自动换行 */
+    justify-content: center; /* 居中 */
+}
+.recomment ul {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.recomment li {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    flex: 1;
+}
+
+.recomment li img {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 240px; /* 统一设置图片宽度 */
+    height: 330px; /* 统一设置图片高度 */
+}
+
+.recomment li div:last-child {
+    margin-top: 10px;
+    text-align: center; /* 居中 */
+}
+
+.recomment li div:last-child p {
+    font-size: 18px;
+    color: #f40;
+    margin-bottom: 5px;
+}
+
+.recomment li div:last-child br {
+    display: none;
+}
+.imginfo
+{
+    max-width: 700px;
+    max-height: 700px;
+}
+.jieshao
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    font-family: 微软雅黑;
+    font-size: 18px;
+    color: #666;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <package name="com.haoduoc.pojo"/>
+    </typeAliases>
+
+    <!--可有可无-->
+    <mappers>
+        <mapper resource="com/haoduoc/dao/UserMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/ManagerMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/HaoDuoCaiMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/HaoDuoCaiTypeMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/HaoDuoCaiCollectMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/HaoDuoCaiOrderMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/RevenuereportMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/IndiscountMapper.xml"/>
+        <mapper resource="com/haoduoc/dao/UseindiscountMapper.xml"/>
+    </mappers>
+
+</configuration>

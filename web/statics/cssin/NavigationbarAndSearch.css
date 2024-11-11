@@ -1,0 +1,99 @@
+/* 搜索*/
+/* 对搜索框的外层div设置样式，使其水平居中 */
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 对搜索框的输入框设置样式 */
+.searchtab {
+    border: 1px solid #ccc; /* 设置输入框边框颜色 */
+    border-radius: 3px; /* 设置输入框边框圆角 */
+    padding: 5px; /* 设置输入框内边距 */
+    margin-right: 5px; /* 设置输入框与按钮的间距 */
+}
+
+/* 对搜索框的按钮设置样式 */
+.searchtab2 {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+/* 导航栏设计 */
+.u1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333; /* 设置导航栏背景颜色 */
+}
+
+.l1 {
+    float: left;
+    width: 25%; /* 将每个导航项的宽度设置为20%以使其均匀分配 */
+}
+.l2{
+    float: left;
+    width: 50%; /* 将每个导航项的宽度设置为20%以使其均匀分配 */
+}
+.l1 a ,.l2 a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.l1 a:hover ,.l2 a:hover {
+    background-color: #111; /* 设置鼠标悬停时导航项的背景颜色 */
+}
+
+/* 清除浮动 */
+.u1:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+body {
+    /*background: url("../indexImage/beijing.jpg") no-repeat center center fixed;*/
+    background-color: #FaF9de;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.9; /* 设置透明度 */
+}
+.hb {
+    display: flex;
+    justify-content: center;
+    background-color: #f2f2f2;
+    padding: 10px 0;
+}
+
+.hb_ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.hb_li {
+    margin: 0 10px;
+    list-style: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.hb_li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.hb_li a:hover {
+    color: #ff5e00;
+}

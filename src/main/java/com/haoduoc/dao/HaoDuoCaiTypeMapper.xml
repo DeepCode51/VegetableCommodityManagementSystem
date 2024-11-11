@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoduoc.dao.HaoDuoCaiTypeMapper">
+    <!--基本类型做参数传递可以不写parameterType-->
+
+    <!--查询所有菜品类型-->
+    <select id="queryHaoDuoCaiType" resultType="HaoDuoCaiType">
+        select * from type
+    </select>
+
+    <!--通过名字查询类型-->
+    <select id="queryHaoDuoCaiTypeByName" resultType="HaoDuoCaiType">
+        select * from type
+        <where>
+            tname=#{tname}
+        </where>
+    </select>
+
+    <!--新增类型-->
+    <insert id="addType" parameterType="HaoDuoCaiType">
+        insert into type (tname)
+        values (#{tname});
+    </insert>
+
+    <!--通过id删除类型-->
+    <delete id="deleteType">
+        delete
+        from type
+        where tid=#{tid};
+    </delete>
+
+    <!--通过id查找类型-->
+    <select id="queryTypeById" resultType="HaoDuoCaiType">
+        select * from type
+        <where>
+            tid=#{tid}
+        </where>
+    </select>
+
+    <!--更新类型-->
+    <update id="updateType" parameterType="HaoDuoCaiType">
+        update type
+        set tname = #{tname}
+        where tid=#{tid};
+    </update>
+
+</mapper>

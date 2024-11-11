@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoduoc.dao.HaoDuoCaiOrderMapper">
+    <!--基本类型做参数传递可以不写parameterType-->
+
+    <!--新增订单-->
+    <insert id="addHaoDuoCaiOrder" parameterType="HaoDuoCaiOrder">
+        insert into yasaiorder (yoid,uid,yid,yacount,yasum,yafunction,yastatus,isreceive,isevaluate,isrefundprocess,yadate,yausername,yaaddress,yaphone)
+        values (#{yoid},#{uid},#{yid},#{yacount},#{yasum},#{yafunction},#{yastatus},#{isreceive},#{isevaluate},#{isrefundprocess},#{yadate},#{yausername},#{yaaddress},#{yaphone});
+    </insert>
+
+    <!--查询订单数量-->
+    <select id="queryOrderCount" resultType="int">
+        select count(*) from yasaiorder
+    </select>
+
+    <!--查询该用户订单-->
+    <select id="queryUserOrder" resultMap="userOrder">
+        select yas.yoid yoid,yas.yacount yacount,yas.yasum yasum,
+        yas.yafunction yafunction,yas.yastatus yastatus,
+        yas.isreceive isreceive,yas.isevaluate isevaluate,
+        yas.isrefundprocess isrefundprocess,
+        yas.yadate yadate,yas.yausername yausername,
+        yas.yaaddress yaaddress,yas.yaphone yaphone,
+               y.yid yid,y.yname yname,y.yimage1 yimage1,
+               y.yprice yprice
+        from yasai y,yasaiorder yas
+        <where>
+            y.yid=yas.yid and yas.uid=#{uid}
+            <if test="isreceive == 'false'">and yas.isreceive=#{isreceive}</if>
+            <if test="isreceive == 'true'">and yas.isreceive=#{isreceive}</if>
+            <if test="isevaluate == 'false'">and yas.isevaluate=#{isevaluate}</if>
+            <if test="isevaluate == 'true'">and yas.isevaluate=#{isevaluate}</if>
+        </where>
+    </select>
+    <resultMap id="userOrder" type="HaoDuoCaiOrder">
+        <result property="yoid" column="yoid"/>
+        <result property="yacount" column="yacount"/>
+        <result property="yasum" column="yasum"/>
+        <result property="yafunction" column="yafunction"/>
+        <result property="yastatus" column="yastatus"/>
+        <result property="isreceive" column="isreceive"/>
+        <result property="isevaluate" column="isevaluate"/>
+        <result property="isrefundprocess" column="isrefundprocess"/>
+        <result property="yadate" column="yadate"/>
+        <result property="yausername" column="yausername"/>
+        <result property="yaaddress" column="yaaddress"/>
+        <result property="yaphone" column="yaphone"/>
+        <association property="haoDuoCais" javaType="HaoDuoCais">
+            <result property="yid" column="yid"/>
+            <result property="yname" column="yname"/>
+            <result property="yimage1" column="yimage1"/>
+            <result property="yprice" column="yprice"/>
+        </association>
+    </resultMap>
+
+    <!--确认收货-->
+    <update id="updateIsreceive">
+        update yasaiorder
+        set isreceive = 'true'
+        where yoid=#{yoid};
+    </update>
+
+    <!--通过订单号查询订单-->
+    <select id="queryOrderByYoid" resultType="HaoDuoCaiOrder">
+        select * from yasaiorder where yoid=#{yoid}
+    </select>
+
+    <!--确认收货-->
+    <update id="updateIsevaluate">
+        update yasaiorder
+        set isevaluate = 'true'
+        where yoid=#{yoid};
+    </update>
+
+    <!--管理员完成对订单的退款处理-->
+    <update id="updateIsrefundprocess">
+        update yasaiorder
+        set isrefundprocess = 'true'
+        where yoid=#{yoid};
+    </update>
+
+    <!--管理员查询所有订单-->
+    <select id="queryAllOrder" resultMap="allOrder">
+        select yas.yoid yoid,yas.yacount yacount,yas.yasum yasum,
+               yas.yafunction yafunction,yas.yastatus yastatus,
+               yas.isreceive isreceive,yas.isevaluate isevaluate,
+               yas.isrefundprocess isrefundprocess,
+               yas.yadate yadate,yas.yausername yausername,
+               yas.yaaddress yaaddress,yas.yaphone yaphone,
+               y.yid yid,y.yname yname,y.yimage1 yimage1,
+               y.yprice yprice
+        from yasai y,yasaiorder yas
+        where y.yid=yas.yid  limit #{startPlace},#{pageSize}
+    </select>
+    <resultMap id="allOrder" type="HaoDuoCaiOrder">
+        <result property="yoid" column="yoid"/>
+        <result property="yacount" column="yacount"/>
+        <result property="yasum" column="yasum"/>
+        <result property="yafunction" column="yafunction"/>
+        <result property="yastatus" column="yastatus"/>
+        <result property="isreceive" column="isreceive"/>
+        <result property="isevaluate" column="isevaluate"/>
+        <result property="isrefundprocess" column="isrefundprocess"/>
+        <result property="yadate" column="yadate"/>
+        <result property="yausername" column="yausername"/>
+        <result property="yaaddress" column="yaaddress"/>
+        <result property="yaphone" column="yaphone"/>
+        <association property="haoDuoCais" javaType="HaoDuoCais">
+            <result property="yid" column="yid"/>
+            <result property="yname" column="yname"/>
+            <result property="yimage1" column="yimage1"/>
+            <result property="yprice" column="yprice"/>
+        </association>
+    </resultMap>
+
+    <!--管理员确认发货-->
+    <update id="updateYastatus">
+        update yasaiorder
+        set yastatus = '已发货'
+        where yoid=#{yoid};
+    </update>
+
+    <!--管理员删除订单-->
+    <delete id="deleteOrderById">
+        delete
+        from yasaiorder
+        where yoid=#{yoid};
+    </delete>
+
+</mapper>

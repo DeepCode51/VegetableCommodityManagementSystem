@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoduoc.dao.HaoDuoCaiMapper">
+    <!--基本类型做参数传递可以不写parameterType-->
+
+    <!--根据账号查询,返回一个HaoDuoCai-->
+    <insert id="addHaoDuoCai" parameterType="HaoDuoCais">
+        insert into yasai (yname,yimage1,yrange,ytype,yintro,yprice,ymanage,ysale,inventory)
+        values (#{yname},#{yimage1},#{yrange},#{ytype},#{yintro},#{yprice},#{ymanage},#{ysale},#{inventory});
+    </insert>
+
+    <!--查询所有菜品-->
+    <select id="queryAllHaoDuoCais" resultType="HaoDuoCais">
+        select * from yasai
+    </select>
+
+    <!--上架或下架菜品-->
+    <update id="updateHaoDuoCaisYmanage">
+        update yasai
+        set ymanage=#{ymanage}
+        where yid=#{yid}
+    </update>
+
+    <!--通过id查询菜品-->
+    <select id="queryHaoDuoCaisById" resultType="HaoDuoCais">
+        select * from yasai
+        <where>
+            <if test="yid != null">
+                yid=#{yid}
+            </if>
+        </where>
+    </select>
+
+    <!--修改菜品信息-->
+    <update id="updateHaoDuoCais" parameterType="HaoDuoCais">
+        update yasai
+        <set>
+            <if test="yname != null">yname=#{yname},</if>
+            <if test="yimage1 != null">yimage1=#{yimage1},</if>
+            <if test="yrange != null">yrange=#{yrange},</if>
+            <if test="ytype != null">ytype=#{ytype},</if>
+            <if test="yintro != null">yintro=#{yintro},</if>
+            <if test="yprice != null">yprice=#{yprice},</if>
+            <if test="ymanage != null">ymanage=#{ymanage},</if>
+            <if test="inventory != null">inventory=#{inventory}</if>
+        </set>
+        where yid=#{yid};
+    </update>
+
+    <!--删除菜品通过id-->
+    <delete id="deleteHaoDuoCaisById">
+        delete
+        from yasai
+        where yid=#{yid};
+    </delete>
+
+    <!--查询蔬菜或者肉类菜品-->
+    <select id="queryHaoDuoCaisRange" resultType="HaoDuoCais">
+        select *
+        from yasai
+        <where>
+            yrange=#{yrange} and ymanage='上架'
+            <if test="ytype!=null">and ytype=#{ytype}</if>
+            <if test="ysale!=null">group by ysale desc ,yid asc </if>
+            <if test="asc!=null">group by yprice asc ,yid asc </if>
+            <if test="desc!=null">group by yprice desc ,yid asc </if>
+        </where>
+    </select>
+
+    <!--查询分类菜品-->
+    <select id="queryHaoDuoCaisType" resultType="HaoDuoCais">
+        select *
+        from yasai
+        <where>
+            ytype=#{ytype}
+        </where>
+    </select>
+
+    <!--增加销量,2023.5.17答辩后要求加上库存，记录这一刻，本来是把这两个分开写，分别调用，结果在下方减少库存的代码完全没问题的情况下，居然翻倍销量，不减少库存，只能放到这里-->
+    <update id="addHaoDuoCaiYsale" parameterType="int">
+        update yasai
+        set ysale = ysale+#{ysale},inventory = inventory-#{ysale}
+        where yid=#{yid};
+    </update>
+    <!--减少库存，日了狗了，下方sql完全没有问题好吧，就是不能运-->
+<!--    <update id="addHaoDuoCaiInventory" parameterType="int">-->
+<!--        update yasai-->
+<!--        set inventory = inventory-#{inventory}-->
+<!--        where yid=#{yid};-->
+<!--    </update>-->
+    <!--通过名字查询菜品-->
+    <select id="queryHaoDuoCaisByName" resultType="HaoDuoCais">
+        select * from yasai
+        where yname like "%"#{yname}"%"
+    </select>
+
+    <!--查询和改菜品类型相同的菜品-->
+    <select id="queryHaoDuoCaisSame" parameterType="HaoDuoCais" resultType="HaoDuoCais">
+        select * from yasai
+        where yrange=#{yrange} and ytype=#{ytype} and yid &lt;&gt; #{yid};
+    </select>
+
+    <!--首页，查询销量最高的六个菜-->
+    <select id="queryHaoDuoCaisBySale" resultType="HaoDuoCais">
+        select * from yasai group by ysale desc ,yid asc limit 0,6;
+    </select>
+
+</mapper>

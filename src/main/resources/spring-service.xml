@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 扫描service相关的bean -->
+    <context:component-scan base-package="com.haoduoc.service" />
+
+    <!--HaoDuoCaiserviceImpl注入到IOC容器中-->
+    <bean id="UserServiceImpl" class="com.haoduoc.service.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>
+
+    <bean id="ManagerServiceImpl" class="com.haoduoc.service.ManagerServiceImpl">
+        <property name="managerMapper" ref="managerMapper"/>
+    </bean>
+
+    <bean id="HaoDuoCaiServiceImpl" class="com.haoduoc.service.HaoDuoCaiServiceImpl">
+        <property name="haoDuoCaiMapper" ref="haoDuoCaiMapper"/>
+    </bean>
+
+    <bean id="HaoDuoCaiTypeServiceImpl" class="com.haoduoc.service.HaoDuoCaiTypeServiceImpl">
+        <property name="haoDuoCaiTypeMapper" ref="haoDuoCaiTypeMapper"/>
+    </bean>
+
+    <bean id="HaoDuoCaiCollectServiceImpl" class="com.haoduoc.service.HaoDuoCaiCollectServiceImpl">
+        <property name="haoDuoCaiCollectMapper" ref="haoDuoCaiCollectMapper"/>
+    </bean>
+
+    <bean id="HaoDuoCaiOrderServiceImpl" class="com.haoduoc.service.HaoDuoCaiOrderServiceImpl">
+        <property name="haoDuoCaiOrderMapper" ref="haoDuoCaiOrderMapper"/>
+    </bean>
+
+    <bean id="HaoDuoCaiEvaluateServiceImpl" class="com.haoduoc.service.HaoDuoCaiEvaluateServiceImpl">
+        <property name="haoDuoCaiEvaluateMapper" ref="haoDuoCaiEvaluateMapper"/>
+    </bean>
+
+
+
+    <bean id="HaoDuoCaiRefundServiceImpl" class="com.haoduoc.service.HaoDuoCaiRefundServiceImpl">
+        <property name="haoDuoCaiRefundMapper" ref="haoDuoCaiRefundMapper"/>
+    </bean>
+    <bean id="RevenuereportServiceImpl" class="com.haoduoc.service.RevenuereportServiceImpl">
+        <property name="revenuereportMapper" ref="revenuereportMapper"/>
+    </bean>
+    <bean id="IndiscountServiceImpl" class="com.haoduoc.service.IndiscountServiceImpl">
+        <property name="indiscountMapper" ref="indiscountMapper"/>
+    </bean>
+    <bean id="UseindiscountServiceImpl" class="com.haoduoc.service.UseindiscountServiceImpl">
+        <property name="useindiscountMapper" ref="useindiscountMapper"/>
+    </bean>
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>

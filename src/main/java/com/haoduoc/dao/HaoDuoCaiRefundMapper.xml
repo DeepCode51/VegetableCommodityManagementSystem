@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoduoc.dao.HaoDuoCaiRefundMapper">
+    <!--基本类型做参数传递可以不写parameterType-->
+
+    <!--用户申请退款处理-->
+    <insert id="addHaoDuoCaiRefund" parameterType="HaoDuoCaiRefund">
+        insert into yasairefund (yoid, yrtype, yrreason, yrimage, yrdate)
+        values (#{yoid},#{yrtype},#{yrreason},#{yrimage},#{yrdate});
+    </insert>
+
+    <!--通过yoid查询是否提交申请-->
+    <select id="queryRefundByYoid" resultType="HaoDuoCaiRefund">
+        select *
+        from yasairefund where yoid=#{yoid};
+    </select>
+
+    <!--管理员查看所有退款提交-->
+    <select id="queryAllRefund" resultMap="allRefund">
+        select ya.yoid yoid,ya.yrtype yrtype,ya.yrdate yrdate,ya.yrreason yrreason,ya.yrimage yrimage,
+               yas.uid uid,yas.yid yid,
+               y.yname yname,y.yimage1 yimage1,u.nname nname
+        from yasairefund ya,yasaiorder yas,yasai y,user u
+        where ya.yoid=yas.yoid and yas.yid=y.yid and yas.uid=u.uid
+    </select>
+
+    <resultMap id="allRefund" type="HaoDuoCaiRefund">
+        <result property="yoid" column="yoid"/>
+        <result property="yrtype" column="yrtype"/>
+        <result property="yrdate" column="yrdate"/>
+        <result property="yrreason" column="yrreason"/>
+        <result property="yrimage" column="yrimage"/>
+        <association property="haoDuoCaiOrder" javaType="HaoDuoCaiOrder">
+            <result property="uid" column="uid"/>
+            <result property="yid" column="yid"/>
+            <association property="haoDuoCais" javaType="HaoDuoCais">
+                <result property="yname" column="yname"/>
+                <result property="yimage1" column="yimage1"/>
+            </association>
+            <association property="user" javaType="User">
+                <result property="nname" column="nname"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <!--删除退款处理-->
+    <delete id="deleteRefund">
+        delete
+        from yasairefund
+        where yoid=#{yoid};
+    </delete>
+
+</mapper>

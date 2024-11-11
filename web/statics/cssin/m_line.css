@@ -1,0 +1,35 @@
+.left {
+    width: 100%;
+    text-align: center;
+}
+
+.nano-content {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nano-content li.l1 {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.nano-content .l1 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.nano-content .l1 a:hover {
+    color: #c00;
+}
+
+.nano-content .l1 .a-type {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}

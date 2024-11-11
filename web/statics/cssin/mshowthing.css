@@ -1,0 +1,54 @@
+.showthing {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+td img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.detelt, .add {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.detelt {
+    background-color: #f44336;
+}
+.add:hover{
+    background-color: #f44336;
+}
+.detelt:hover {
+    background-color: #3e8e41;
+}
+
+

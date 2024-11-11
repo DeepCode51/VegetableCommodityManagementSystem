@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoduoc.dao.IndiscountMapper">
+    <!--基本类型做参数传递可以不写parameterType-->
+
+    <!--查询所有表单-->
+    <select id="queryYasaiIndiscount" resultType="Indiscount">
+        select * from indiscount
+    </select>
+    <!--更改优惠卷数量-->
+    <update id="alterIndiscountByid" parameterType="Indiscount">
+        update indiscount
+        set disnumber = #{disnumber}
+        where disid = #{disid}
+    </update>
+    <!--根据id查询,返回一个user-->
+    <select id="queryIndiscountById" resultType="Indiscount">
+        select * from indiscount
+        where disid = #{disid}
+    </select>
+    <!--减少优惠卷-->
+    <update id="reduceIndiscount" parameterType="Indiscount">
+        update indiscount
+        set disnumber = disnumber-1
+        where disid=#{disid};
+    </update>
+</mapper>

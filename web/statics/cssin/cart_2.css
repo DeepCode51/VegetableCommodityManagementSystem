@@ -1,0 +1,95 @@
+/* 购物车表格样式 */
+table {
+    border-collapse: collapse;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff4e8;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f8c37f;
+}
+
+/* 表格内图片大小 */
+img {
+    max-height: 150px;
+    max-width: 100px;
+}
+.countain a {
+    font-size: 24px;
+    color: #36C;
+}
+
+.ta {
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+/*    */
+/* 设置提交订单按钮的样式 */
+.input-submit {
+    background-color: #4CAF50; /* 设置按钮背景颜色 */
+    border: none; /* 去除按钮边框 */
+    color: white; /* 设置按钮文本颜色 */
+    padding: 10px 20px; /* 设置按钮内边距 */
+    text-align: center; /* 设置文本居中 */
+    text-decoration: none; /* 去除文本下划线 */
+    display: inline-block; /* 将按钮设置为行内块级元素 */
+    font-size: 16px; /* 设置按钮文本大小 */
+    cursor: pointer; /* 设置鼠标指针为手型 */
+    margin-top: 20px; /* 设置按钮上方的外边距 */
+}
+
+.input-submit:hover {
+    background-color: #3e8e41; /* 设置鼠标悬停时按钮的背景颜色 */
+}
+
+/* 设置返回购物车按钮的样式 */
+.go-back {
+    background-color: #555555; /* 设置按钮背景颜色 */
+    border: none; /* 去除按钮边框 */
+    color: white; /* 设置按钮文本颜色 */
+    padding: 10px 20px; /* 设置按钮内边距 */
+    text-align: center; /* 设置文本居中 */
+    text-decoration: none; /* 去除文本下划线 */
+    display: inline-block; /* 将按钮设置为行内块级元素 */
+    font-size: 16px; /* 设置按钮文本大小 */
+    cursor: pointer; /* 设置鼠标指针为手型 */
+    margin-top: 20px; /* 设置按钮上方的外边距 */
+}
+
+.go-back:hover {
+    background-color: #444444; /* 设置鼠标悬停时按钮的背景颜色 */
+}
+/*    */
+.ps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* 对内部元素设置样式 */
+.title-text {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+label.title-text {
+    color: #007bff;
+}
